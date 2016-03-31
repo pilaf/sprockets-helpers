@@ -339,8 +339,8 @@ module Sprockets
     end
 
     def find_asset_path(uri, source, options = {})
-      if Helpers.manifest && options[:manifest] != false
-        manifest_path = Helpers.manifest.assets[uri.path]
+      if options[:mainfest] != false && manifest = Helpers.manifest || options[:manifest]
+        manifest_path = manifest.assets[uri.path]
         return Helpers::ManifestPath.new(uri, manifest_path, options) if manifest_path
       end
 
